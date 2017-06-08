@@ -13,6 +13,7 @@ class Stream
      * @var \Predis\Async\Client
      */
     protected $client;
+
     /**
      * Construct a new streaming service.
      *
