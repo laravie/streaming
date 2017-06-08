@@ -27,19 +27,39 @@ class Stream
             'eventloop' => EventLoop::create(),
         ]);
     }
+
     /**
      * Connect to streaming service.
      *
      * @param \Laravie\Streaming\Listener $listener
+     *
+     * @return $this
      */
     public function connect(Listener $listener)
     {
         $this->client->connect(function (Client $client) use ($listener) {
-            $listener->onConnected();
-            $client->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
-            $listener->onSubscribed();
+            $this->onConnected($client, $listener);
         });
 
         $this->client->getEventLoop()->run();
+
+        return $this;
+    }
+
+    /**
+     * Handle on connected.
+     *
+     * @param  \Predis\Async\Client  $client
+     * @param  \Laravie\Streaming\Listener  $listener
+     *
+     * @return void
+     */
+    protected function onConnected(Client $client, Listener $listener)
+    {
+        $listener->onConnected();
+
+        $client->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
+
+        $listener->onSubscribed();
     }
 }
