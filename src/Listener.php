@@ -7,16 +7,20 @@ interface Listener
     /**
      * Trigger on connected listener.
      *
+     * @param  \Predis\Async\Client  $client
+     *
      * @return mixed
      */
-    public function onConnected();
+    public function onConnected($client);
 
     /**
      * Trigger on subscribed listener.
      *
+     * @param  \Predis\Async\Client  $client
+     *
      * @return mixed
      */
-    public function onSubscribed();
+    public function onSubscribed($client);
 
     /**
      * Trigger on emitted listener.

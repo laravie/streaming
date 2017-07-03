@@ -18,6 +18,11 @@
             "Laravie\\Streaming\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Laravie\\Streaming\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"

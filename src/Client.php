@@ -2,17 +2,17 @@
 
 namespace Laravie\Streaming;
 
-use Predis\Async\Client;
+use Predis\Async\Client as PredisClient;
 use React\EventLoop\Factory as EventLoop;
 
-class Stream
+class Client
 {
     /**
-     * Redis Async Client.
+     * Redis Async Client connection.
      *
      * @var \Predis\Async\Client
      */
-    protected $client;
+    protected $connection;
 
     /**
      * Construct a new streaming service.
@@ -21,9 +21,9 @@ class Stream
      */
     public function __construct(array $config)
     {
-        $connection = sprintf('tcp://%s:%d', $config['host'], $config['port']);
+        $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
 
-        $this->client = new Client($connection, [
+        $this->connection = new PredisClient($url, [
             'eventloop' => EventLoop::create(),
         ]);
     }
@@ -37,13 +37,33 @@ class Stream
      */
     public function connect(Listener $listener)
     {
-        $this->client->connect(function (Client $client) use ($listener) {
+        $this->connection->connect(function (PredisClient $client) use ($listener) {
             $this->onConnected($client, $listener);
         });
 
-        $this->client->getEventLoop()->run();
+        $this->getEventLoop()->run();
 
         return $this;
+    }
+
+    /**
+     * Get connection eventloop.
+     *
+     * @return \React\EventLoop\LoopInterface
+     */
+    protected function getEventLoop()
+    {
+        return $this->connection->getEventLoop();
+    }
+
+    /**
+     * Disconnect.
+     *
+     * @return void
+     */
+    public function disconnect()
+    {
+        $this->connection->disconnect();
     }
 
     /**
@@ -54,12 +74,12 @@ class Stream
      *
      * @return void
      */
-    protected function onConnected(Client $client, Listener $listener)
+    protected function onConnected(PredisClient $client, Listener $listener)
     {
-        $listener->onConnected();
+        $listener->onConnected($client);
 
         $client->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
-        $listener->onSubscribed();
+        $listener->onSubscribed($client);
     }
 }
