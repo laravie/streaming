@@ -20,10 +20,6 @@ class ChatTest extends TestCase implements Listener
 
     /**
      * Trigger on connected listener.
-     *
-     * @param  \Predis\Async\Client  $client
-     *
-     * @return mixed
      */
     public function onConnected($client)
     {
@@ -37,10 +33,6 @@ class ChatTest extends TestCase implements Listener
 
     /**
      * Trigger on subscribed listener.
-     *
-     * @param  \Predis\Async\Client  $client
-     *
-     * @return mixed
      */
     public function onSubscribed($client)
     {
@@ -51,10 +43,7 @@ class ChatTest extends TestCase implements Listener
     /**
      * Trigger on emitted listener.
      *
-     * @param object $event
-     * @param object $pubsub
-     *
-     * @return mixed
+     * Assert that `PUBLISH general "Hello world" was catched by the listener.
      */
     public function onEmitted($event, $pubsub)
     {
@@ -67,8 +56,6 @@ class ChatTest extends TestCase implements Listener
 
     /**
      * List of subscribed channels.
-     *
-     * @return array
      */
     public function subscribedChannels()
     {
