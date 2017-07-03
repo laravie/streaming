@@ -33,6 +33,7 @@ Above installation can also be simplify by using the following command:
 ### Example
 
 ```php
+<?php
 
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
