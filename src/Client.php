@@ -47,16 +47,6 @@ class Client
     }
 
     /**
-     * Get connection eventloop.
-     *
-     * @return \React\EventLoop\LoopInterface
-     */
-    protected function getEventLoop()
-    {
-        return $this->connection->getEventLoop();
-    }
-
-    /**
      * Disconnect.
      *
      * @return void
@@ -64,6 +54,16 @@ class Client
     public function disconnect()
     {
         $this->connection->disconnect();
+    }
+
+    /**
+     * Get connection eventloop.
+     *
+     * @return \React\EventLoop\LoopInterface
+     */
+    protected function getEventLoop()
+    {
+        return $this->connection->getEventLoop();
     }
 
     /**
