@@ -13,6 +13,9 @@
         "php": ">=5.4.0",
         "predis/predis-async": "~0.3"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8.35 || ~5.7"
+    },
     "autoload": {
         "psr-4": {
             "Laravie\\Streaming\\": "src/"
