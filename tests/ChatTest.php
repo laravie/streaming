@@ -4,7 +4,6 @@ namespace Laravie\Streaming\Tests;
 
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
-use Predis\Async\Client as PredisClient;
 
 class ChatTest extends TestCase implements Listener
 {
@@ -33,7 +32,7 @@ class ChatTest extends TestCase implements Listener
         });
 
         $this->assertTrue(true, 'Client connected!');
-        $this->assertInstanceOf(PredisClient::class, $client);
+        $this->assertInstanceOf('Predis\Async\Client', $client);
     }
 
     /**
@@ -46,7 +45,7 @@ class ChatTest extends TestCase implements Listener
     public function onSubscribed($client)
     {
         $this->assertTrue(true, 'Client subscribed!');
-        $this->assertInstanceOf(PredisClient::class, $client);
+        $this->assertInstanceOf('Predis\Async\Client', $client);
     }
 
     /**
