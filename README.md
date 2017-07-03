@@ -28,3 +28,44 @@ And then run `composer install` from the terminal.
 Above installation can also be simplify by using the following command:
 
     composer require "laravie/streaming=~1.0"
+
+
+### Example
+
+```php
+
+use Laravie\Streaming\Client;
+use Laravie\Streaming\Listener;
+
+$chat = new class('127.0.0.1', 6379) implements Listener {
+    public function __construct($host, $port) {
+        $client = new Client(compact('host', 'port'));
+        $client->connect($this);
+    }
+
+    public function subscribedChannels() {
+        return ['topic:*'];
+    }
+
+    public function onConnected($client) {
+        echo "Connected to redis!";
+    }
+
+    public function onSubscribed($client) {
+        echo "Subscribed to channel `topic:*`!";
+    }
+
+    public function onEmitted($event, $pubsub) {
+        // PUBLISH topic:laravel "Hello world"
+        
+        # DESCRIBE $event
+        #
+        # {
+        #   "kind": "pmessage",
+        #   "pattern": "topic:*",
+        #   "channel": "topic:laravel",
+        #   "payload": "Hello world"
+        # }
+    }
+}
+```
