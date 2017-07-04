@@ -2,6 +2,7 @@
 
 namespace Laravie\Streaming;
 
+use React\EventLoop\LoopInterface;
 use Predis\Async\Client as PredisClient;
 use React\EventLoop\Factory as EventLoop;
 
@@ -22,10 +23,9 @@ class Client
     public function __construct(array $config)
     {
         $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
+        $eventloop = $this->resolveEventLoop(isset($config['loop']) ? $config['loop'] : null);
 
-        $this->connection = new PredisClient($url, [
-            'eventloop' => EventLoop::create(),
-        ]);
+        $this->connection = new PredisClient($url, compact('eventloop'));
     }
 
     /**
@@ -81,5 +81,21 @@ class Client
         $client->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
         $listener->onSubscribed($client);
+    }
+
+    /**
+     * Resolve event loop implementation.
+     *
+     * @param  \React\EventLoop\LoopInterface|null $loop
+     *
+     * @return \React\EventLoop\LoopInterface
+     */
+    protected function resolveEventLoop(LoopInterface $loop = null)
+    {
+        if (is_null($loop)) {
+            $loop = EventLoop::create();
+        }
+
+        return $loop;
     }
 }
