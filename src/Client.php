@@ -24,7 +24,11 @@ class Client
     {
         $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
         $eventloop = $this->resolveEventLoop(isset($config['loop']) ? $config['loop'] : null);
-        $phpiredis = isset($config['phpiredis']) ? $config['phpiredis'] : extension_loaded('phpiredis');
+        $phpiredis = isset($config['phpiredis']) ? (bool) $config['phpiredis'] : false;
+
+        if (! extension_loaded('phpiredis')) {
+            $phpiredis = false;
+        }
 
         $this->connection = new PredisClient($url, compact('eventloop', 'phpiredis'));
     }
