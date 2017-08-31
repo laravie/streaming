@@ -38,12 +38,7 @@ Above installation can also be simplify by using the following command:
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 
-$chat = new class('127.0.0.1', 6379) implements Listener {
-    public function __construct($host, $port) {
-        $client = new Client(compact('host', 'port'));
-        $client->connect($this);
-    }
-
+$chat = new class implements Listener {
     public function subscribedChannels() {
         return ['topic:*'];
     }
@@ -69,4 +64,7 @@ $chat = new class('127.0.0.1', 6379) implements Listener {
         # }
     }
 }
+
+$client = new Client(['host' => '127.0.0.1', 'port' =>6379]);
+$client->connect($chat);
 ```
