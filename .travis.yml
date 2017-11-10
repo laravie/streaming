@@ -3,11 +3,10 @@ language: php
 sudo: false
 
 php:
-  - 5.4
-  - 5.5
   - 5.6
   - 7.0
   - 7.1
+  - 7.2
 
 env:
   global:
@@ -31,11 +30,10 @@ script:
 
 matrix:
   include:
-    - php: 5.4
+    - php: 5.6
       env: setup=lowest
-    - php: 5.4
+    - php: 5.6
       env: setup=stable
   allow_failures:
-    - env: setup=stable
     - php: hhvm
   fast_finish: true
