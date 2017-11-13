@@ -65,6 +65,6 @@ $chat = new class implements Listener {
     }
 }
 
-$client = new Client(['host' => '127.0.0.1', 'port' =>6379]);
+$client = new Client(['host' => '127.0.0.1', 'port' => 6379]);
 $client->connect($chat);
 ```
