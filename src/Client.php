@@ -24,11 +24,7 @@ class Client
     {
         $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
         $eventloop = $this->resolveEventLoop($config['loop'] ?? null);
-        $phpiredis = (bool) ($config['phpiredis'] ?? false);
-
-        if (! extension_loaded('phpiredis')) {
-            $phpiredis = false;
-        }
+        $phpiredis = $this->detectRedisExtension($config);
 
         $this->connection = new PredisClient($url, compact('eventloop', 'phpiredis'));
     }
@@ -102,5 +98,21 @@ class Client
         }
 
         return $loop;
+    }
+
+    /**
+     * Detect phpiredis extension and check configuration to verify whether we should use it.
+     *
+     * @param  array  $config
+     *
+     * @return bool
+     */
+    protected function detectRedisExtension(array $config): bool
+    {
+        if (! extension_loaded('phpiredis')) {
+            return false;
+        }
+
+        return (bool) ($config['phpiredis'] ?? false);
     }
 }
