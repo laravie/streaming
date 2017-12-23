@@ -9,18 +9,18 @@ interface Listener
      *
      * @param  \Predis\Async\Client  $client
      *
-     * @return mixed
+     * @return void
      */
-    public function onConnected($client);
+    public function onConnected($client): void;
 
     /**
      * Trigger on subscribed listener.
      *
      * @param  \Predis\Async\Client  $client
      *
-     * @return mixed
+     * @return void
      */
-    public function onSubscribed($client);
+    public function onSubscribed($client): void;
 
     /**
      * Trigger on emitted listener.
@@ -28,14 +28,14 @@ interface Listener
      * @param object $event
      * @param object $pubsub
      *
-     * @return mixed
+     * @return void
      */
-    public function onEmitted($event, $pubsub);
+    public function onEmitted($event, $pubsub): void;
 
     /**
      * List of subscribed channels.
      *
      * @return array
      */
-    public function subscribedChannels();
+    public function subscribedChannels(): array;
 }

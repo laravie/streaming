@@ -23,8 +23,8 @@ class Client
     public function __construct(array $config)
     {
         $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
-        $eventloop = $this->resolveEventLoop(isset($config['loop']) ? $config['loop'] : null);
-        $phpiredis = isset($config['phpiredis']) ? (bool) $config['phpiredis'] : false;
+        $eventloop = $this->resolveEventLoop($config['loop'] ?? null);
+        $phpiredis = (bool) ($config['phpiredis'] ?? false);
 
         if (! extension_loaded('phpiredis')) {
             $phpiredis = false;
@@ -40,7 +40,7 @@ class Client
      *
      * @return $this
      */
-    public function connect(Listener $listener)
+    public function connect(Listener $listener): self
     {
         $this->connection->connect(function (PredisClient $client) use ($listener) {
             $this->onConnected($client, $listener);
@@ -56,7 +56,7 @@ class Client
      *
      * @return void
      */
-    public function disconnect()
+    public function disconnect(): void
     {
         $this->connection->disconnect();
     }
@@ -66,7 +66,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function getEventLoop()
+    protected function getEventLoop(): LoopInterface
     {
         return $this->connection->getEventLoop();
     }
@@ -79,7 +79,7 @@ class Client
      *
      * @return void
      */
-    protected function onConnected(PredisClient $client, Listener $listener)
+    protected function onConnected(PredisClient $client, Listener $listener): void
     {
         $listener->onConnected($client);
 
@@ -95,7 +95,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function resolveEventLoop(LoopInterface $loop = null)
+    protected function resolveEventLoop(?LoopInterface $loop = null): LoopInterface
     {
         if (is_null($loop)) {
             $loop = EventLoop::create();

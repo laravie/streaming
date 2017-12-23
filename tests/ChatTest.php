@@ -21,7 +21,7 @@ class ChatTest extends TestCase implements Listener
     /**
      * Trigger on connected listener.
      */
-    public function onConnected($client)
+    public function onConnected($client): void
     {
         $client->getEventLoop()->futureTick(function () {
             $this->redis->publish('topic:general', 'Hello world');
@@ -34,7 +34,7 @@ class ChatTest extends TestCase implements Listener
     /**
      * Trigger on subscribed listener.
      */
-    public function onSubscribed($client)
+    public function onSubscribed($client): void
     {
         $this->assertTrue(true, 'Client subscribed!');
         $this->assertInstanceOf('Predis\Async\Client', $client);
@@ -45,7 +45,7 @@ class ChatTest extends TestCase implements Listener
      *
      * Assert that `PUBLISH general "Hello world" was catched by the listener.
      */
-    public function onEmitted($event, $pubsub)
+    public function onEmitted($event, $pubsub): void
     {
         $this->assertEquals('pmessage', $event->kind);
         $this->assertEquals('topic:*', $event->pattern);
@@ -57,7 +57,7 @@ class ChatTest extends TestCase implements Listener
     /**
      * List of subscribed channels.
      */
-    public function subscribedChannels()
+    public function subscribedChannels(): array
     {
         return ['topic:*'];
     }
