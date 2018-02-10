@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.0.0
+
+Released: 2018-02-10
+
+### Changes
+
+* Update minimum PHP to 7.1+.
+* Add scalar typehint for parameter and return type.
+
 ## 1.1.0
 
 Released: 2017-11-13
