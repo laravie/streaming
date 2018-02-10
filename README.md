@@ -39,19 +39,19 @@ use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 
 $chat = new class implements Listener {
-    public function subscribedChannels() {
+    public function subscribedChannels(): array {
         return ['topic:*'];
     }
 
-    public function onConnected($client) {
+    public function onConnected($client): void {
         echo "Connected to redis!";
     }
 
-    public function onSubscribed($client) {
+    public function onSubscribed($client): void {
         echo "Subscribed to channel `topic:*`!";
     }
 
-    public function onEmitted($event, $pubsub) {
+    public function onEmitted($event, $pubsub): void {
         // PUBLISH topic:laravel "Hello world"
         
         # DESCRIBE $event
