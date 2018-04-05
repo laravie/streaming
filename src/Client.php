@@ -36,7 +36,7 @@ class Client
      *
      * @return $this
      */
-    public function connect(Listener $listener): self
+    public function connect(Listener $listener)
     {
         $this->connection->connect(function (PredisClient $client) use ($listener) {
             $this->onConnected($client, $listener);
