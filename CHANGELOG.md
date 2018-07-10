@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.1.0
+
+Release: 2018-07-10
+
+### Changes
+
+* Remove return scalar typehint.
+
 ## 2.0.0
 
 Released: 2018-02-10
