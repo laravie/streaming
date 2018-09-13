@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "laravie/predis-async": "^0.1"
+        "laravie/predis-async": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
@@ -28,7 +28,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1-dev"
+            "dev-master": "2.2-dev"
         }
     },
     "config": {
