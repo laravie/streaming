@@ -2,9 +2,17 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.1.1
+
+Released: 2018-09-13
+
+### Changes
+
+* Replaced abandoned `predis/predis-async` with `laravie/predis-async`.
+
 ## 2.1.0
 
-Release: 2018-07-10
+Released: 2018-07-10
 
 ### Changes
 
