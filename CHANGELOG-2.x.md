@@ -26,27 +26,3 @@ Released: 2018-02-10
 
 * Update minimum PHP to 7.1+.
 * Add scalar typehint for parameter and return type.
-
-## 1.1.0
-
-Released: 2017-11-13
-
-### Changes
-
-* Update minimum PHP to 5.6+.
-
-## 1.0.1
-
-Released: 2017-07-12
-
-### Added
-
-* Added support to configure `Laravie\Streaming\Client` to use `phpiredis` extension.
-
-## 1.0.0
-
-Released: 2017-07-03
-
-### Added
-
-* Initial stable release.
