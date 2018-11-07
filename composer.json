@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "laravie/predis-async": "^1.0"
+        "laravie/predis-async": "^0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
