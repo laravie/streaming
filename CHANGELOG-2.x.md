@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.2.0
+
+Released: 2018-11-09
+
+### Changes
+
+* Update `react/event-loop` to 1.0+.
+
 ## 2.1.1
 
 Released: 2018-09-13
