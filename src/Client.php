@@ -93,7 +93,7 @@ class Client
      */
     protected function resolveEventLoop(?LoopInterface $loop = null): LoopInterface
     {
-        if (is_null($loop)) {
+        if (\is_null($loop)) {
             $loop = EventLoop::create();
         }
 
@@ -109,7 +109,7 @@ class Client
      */
     protected function detectRedisExtension(array $config): bool
     {
-        if (! extension_loaded('phpiredis')) {
+        if (! \extension_loaded('phpiredis')) {
             return false;
         }
 
