@@ -19,7 +19,7 @@ class TestCase extends PHPUnit
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->redis = new Client([
             'scheme' => 'tcp',
@@ -33,7 +33,7 @@ class TestCase extends PHPUnit
      *
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->redis);
     }
