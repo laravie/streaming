@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.2.1
+
+Released: 2019-02-17
+
+### Changes
+
+* Improve performance by prefixing all global functions calls with `\` to skip the look up and resolve process and go straight to the global function.
+
 ## 2.2.0
 
 Released: 2018-11-09
