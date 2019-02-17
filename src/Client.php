@@ -22,7 +22,7 @@ class Client
      */
     public function __construct(array $config)
     {
-        $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
+        $url = \sprintf('tcp://%s:%d', $config['host'], $config['port']);
         $eventloop = $this->resolveEventLoop($config['loop'] ?? null);
         $phpiredis = $this->detectRedisExtension($config);
 
