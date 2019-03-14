@@ -87,17 +87,17 @@ class Client
     /**
      * Resolve event loop implementation.
      *
-     * @param  \React\EventLoop\LoopInterface|null $loop
+     * @param  \React\EventLoop\LoopInterface|null $eventLoop
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function resolveEventLoop(?LoopInterface $loop = null): LoopInterface
+    protected function resolveEventLoop(?LoopInterface $eventLoop = null): LoopInterface
     {
-        if (\is_null($loop)) {
-            $loop = EventLoop::create();
+        if (\is_null($eventLoop)) {
+            $eventLoop = EventLoop::create();
         }
 
-        return $loop;
+        return $eventLoop;
     }
 
     /**
