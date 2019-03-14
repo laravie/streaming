@@ -38,8 +38,8 @@ class Client
      */
     public function connect(Listener $listener)
     {
-        $this->connection->connect(function (PredisClient $client) use ($listener) {
-            $this->onConnected($client, $listener);
+        $this->connection->connect(function (PredisClient $predis) use ($listener) {
+            $this->onConnected($predis, $listener);
         });
 
         $this->getEventLoop()->run();
@@ -62,7 +62,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function getEventLoop(): LoopInterface
+    public function getEventLoop(): LoopInterface
     {
         return $this->connection->getEventLoop();
     }
@@ -70,18 +70,18 @@ class Client
     /**
      * Handle on connected.
      *
-     * @param  \Predis\Async\Client  $client
+     * @param  \Predis\Async\Client  $predis
      * @param  \Laravie\Streaming\Listener  $listener
      *
      * @return void
      */
-    protected function onConnected(PredisClient $client, Listener $listener): void
+    protected function onConnected(PredisClient $predis, Listener $listener): void
     {
-        $listener->onConnected($client);
+        $listener->onConnected($this, $predis);
 
-        $client->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
+        $predis->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
-        $listener->onSubscribed($client);
+        $listener->onSubscribed($this, $predis);
     }
 
     /**

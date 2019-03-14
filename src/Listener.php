@@ -7,20 +7,22 @@ interface Listener
     /**
      * Trigger on connected listener.
      *
-     * @param  \Predis\Async\Client  $client
+     * @param  \Laravie\Streaming\Client  $client
+     * @param  \Predis\Async\Client  $predis
      *
      * @return void
      */
-    public function onConnected($client);
+    public function onConnected($client, $predis);
 
     /**
      * Trigger on subscribed listener.
      *
-     * @param  \Predis\Async\Client  $client
+     * @param  \Laravie\Streaming\Client  $client
+     * @param  \Predis\Async\Client  $predis
      *
      * @return void
      */
-    public function onSubscribed($client);
+    public function onSubscribed($client, $predis);
 
     /**
      * Trigger on emitted listener.
