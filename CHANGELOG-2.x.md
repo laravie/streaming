@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 2.2.2
+
+Released: 2019-03-15
+
+### Changes
+
+* Small trivial changes to code and readme.
+
 ## 2.2.1
 
 Released: 2019-02-17
