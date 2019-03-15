@@ -47,20 +47,18 @@ $chat = new class implements Listener {
     }
     
     /**
-     * @param  \Laravie\Streaming\Client  $client
      * @param  \Predis\Async\Client  $redis  
      * @return void
      */
-    public function onConnected($client, $redis) {
+    public function onConnected($redis) {
         echo "Connected to redis!";
     }
 
     /**
-     * @param  \Laravie\Streaming\Client  $client
      * @param  \Predis\Async\Client  $redis  
      * @return void
      */
-    public function onSubscribed($client, $redis) {
+    public function onSubscribed($redis) {
         echo "Subscribed to channel `topic:*`!";
     }
     

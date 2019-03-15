@@ -30,32 +30,28 @@ class ChatTest extends TestCase implements Listener
     /**
      * Trigger on connected listener.
      *
-     * @param  \Laravie\Streaming\Client  $client
      * @param  \Predis\Async\Client  $predis
      */
-    public function onConnected($client, $predis)
+    public function onConnected($predis)
     {
         $predis->getEventLoop()->futureTick(function () {
             $this->redis->publish('topic:general', 'Hello world');
         });
 
         $this->assertTrue(true, 'Client connected!');
-        $this->assertInstanceOf(Client::class, $client);
         $this->assertInstanceOf(Predis::class, $predis);
     }
 
     /**
      * Trigger on subscribed listener.
      *
-     * @param  \Laravie\Streaming\Client  $client
      * @param  \Predis\Async\Client  $predis
      *
      * @return void
      */
-    public function onSubscribed($client, $predis)
+    public function onSubscribed($predis)
     {
         $this->assertTrue(true, 'Client subscribed!');
-        $this->assertInstanceOf(Client::class, $client);
         $this->assertInstanceOf(Predis::class, $predis);
     }
 

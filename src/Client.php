@@ -62,7 +62,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    public function getEventLoop(): LoopInterface
+    protected function getEventLoop(): LoopInterface
     {
         return $this->connection->getEventLoop();
     }
@@ -77,11 +77,11 @@ class Client
      */
     protected function onConnected(PredisClient $predis, Listener $listener): void
     {
-        $listener->onConnected($this, $predis);
+        $listener->onConnected($predis);
 
         $predis->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
-        $listener->onSubscribed($this, $predis);
+        $listener->onSubscribed($predis);
     }
 
     /**
