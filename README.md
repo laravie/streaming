@@ -16,7 +16,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "laravie/streaming": "^2.2"
+        "laravie/streaming": "^3.0"
     }
 }
 ```
@@ -27,7 +27,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "laravie/streaming=^2.2"
+    composer require "laravie/streaming=^3.0"
 
 
 ### Example
@@ -37,17 +37,18 @@ Above installation can also be simplify by using the following command:
 
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
+use Predis\Async\Client as Predis;
 
 $chat = new class implements Listener {
     public function subscribedChannels(): array {
         return ['topic:*'];
     }
 
-    public function onConnected($client): void {
+    public function onConnected(Client $client, Predis $redis): void {
         echo "Connected to redis!";
     }
 
-    public function onSubscribed($client): void {
+    public function onSubscribed(Client $client, Predis $redis): void {
         echo "Subscribed to channel `topic:*`!";
     }
 
