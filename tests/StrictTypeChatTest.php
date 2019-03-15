@@ -6,7 +6,7 @@ use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
 
-class ChatTest extends TestCase implements Listener
+class StrictTypeChatTest extends TestCase implements Listener
 {
     /**
      * Teardown the test environment.
@@ -33,7 +33,7 @@ class ChatTest extends TestCase implements Listener
      * @param  \Laravie\Streaming\Client  $client
      * @param  \Predis\Async\Client  $predis
      */
-    public function onConnected($client, $predis)
+    public function onConnected($client, $predis): void
     {
         $predis->getEventLoop()->futureTick(function () {
             $this->redis->publish('topic:general', 'Hello world');
@@ -52,7 +52,7 @@ class ChatTest extends TestCase implements Listener
      *
      * @return void
      */
-    public function onSubscribed($client, $predis)
+    public function onSubscribed($client, $predis): void
     {
         $this->assertTrue(true, 'Client subscribed!');
         $this->assertInstanceOf(Client::class, $client);
@@ -64,7 +64,7 @@ class ChatTest extends TestCase implements Listener
      *
      * Assert that `PUBLISH general "Hello world" was catched by the listener.
      */
-    public function onEmitted($event, $pubsub)
+    public function onEmitted($event, $pubsub): void
     {
         $this->assertEquals('pmessage', $event->kind);
         $this->assertEquals('topic:*', $event->pattern);

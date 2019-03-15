@@ -37,22 +37,42 @@ Above installation can also be simplify by using the following command:
 
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
-use Predis\Async\Client as Predis;
 
 $chat = new class implements Listener {
+    /**
+     * @return array
+     */
     public function subscribedChannels(): array {
         return ['topic:*'];
     }
-
-    public function onConnected(Client $client, Predis $redis): void {
+    
+    /**
+     * @param  \Laravie\Streaming\Client  $client
+     * @param  \Predis\Async\Client  $redis  
+     * @return void
+     */
+    public function onConnected($client, $redis) {
         echo "Connected to redis!";
     }
 
-    public function onSubscribed(Client $client, Predis $redis): void {
+    /**
+     * @param  \Laravie\Streaming\Client  $client
+     * @param  \Predis\Async\Client  $redis  
+     * @return void
+     */
+    public function onSubscribed($client, $redis) {
         echo "Subscribed to channel `topic:*`!";
     }
-
-    public function onEmitted($event, $pubsub): void {
+    
+    /**
+     * Trigger on emitted listener.
+     *
+     * @param  object  $event
+     * @param  object  $pubsub
+     *
+     * @return void
+     */
+    public function onEmitted($event, $pubsub) {
         // PUBLISH topic:laravel "Hello world"
         
         # DESCRIBE $event
