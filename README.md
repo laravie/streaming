@@ -8,6 +8,7 @@ The project allows you as a developer to listen to Redis pubsub using async inst
 [![Total Downloads](https://poser.pugx.org/laravie/streaming/downloads)](https://packagist.org/packages/laravie/streaming)
 [![Latest Unstable Version](https://poser.pugx.org/laravie/streaming/v/unstable)](https://packagist.org/packages/laravie/streaming)
 [![License](https://poser.pugx.org/laravie/streaming/license)](https://packagist.org/packages/laravie/streaming)
+[![Coverage Status](https://coveralls.io/repos/github/laravie/streaming/badge.svg?branch=master)](https://coveralls.io/github/laravie/streaming?branch=master)
 
 ## Installation
 
