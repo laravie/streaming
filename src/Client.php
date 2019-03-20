@@ -19,14 +19,18 @@ class Client
      * Construct a new streaming service.
      *
      * @param array $config
+     * @param \React\EventLoop\LoopInterface $eventLoop
      */
-    public function __construct(array $config)
+    public function __construct(array $config, ?LoopInterface $eventLoop = null)
     {
         $url = \sprintf('tcp://%s:%d', $config['host'], $config['port']);
-        $eventloop = $this->resolveEventLoop($config['loop'] ?? null);
-        $phpiredis = $this->detectRedisExtension($config);
 
-        $this->connection = new PredisClient($url, compact('eventloop', 'phpiredis'));
+        $options = [
+            'eventloop' => $this->resolveEventLoop($eventLoop),
+            'phpiredis' => $this->detectRedisExtension($config),
+        ];
+
+        $this->connection = new PredisClient($url, $options);
     }
 
     /**
