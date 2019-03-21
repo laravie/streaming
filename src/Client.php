@@ -66,7 +66,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function getEventLoop(): LoopInterface
+    final public function getEventLoop(): LoopInterface
     {
         return $this->connection->getEventLoop();
     }
@@ -95,7 +95,7 @@ class Client
      *
      * @return \React\EventLoop\LoopInterface
      */
-    protected function resolveEventLoop(?LoopInterface $eventLoop = null): LoopInterface
+    final protected function resolveEventLoop(?LoopInterface $eventLoop = null): LoopInterface
     {
         if (\is_null($eventLoop)) {
             $eventLoop = EventLoop::create();
@@ -111,7 +111,7 @@ class Client
      *
      * @return bool
      */
-    protected function detectRedisExtension(array $config): bool
+    final protected function detectRedisExtension(array $config): bool
     {
         if (! \extension_loaded('phpiredis')) {
             return false;
