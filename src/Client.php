@@ -83,6 +83,10 @@ class Client
     {
         $listener->onConnected($predis);
 
+        if (\method_exists($listener, 'withEventLoop')) {
+            $listener->withEventLoop($predis->getEventLoop());
+        }
+
         $predis->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
         $listener->onSubscribed($predis);
