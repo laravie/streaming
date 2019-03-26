@@ -2,6 +2,7 @@
 
 namespace Laravie\Streaming\Tests;
 
+use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
@@ -19,12 +20,16 @@ class StrictTypeChatTest extends TestCase implements Listener
     /** @test */
     public function test_it_can_listen_to_published_message()
     {
+        $eventLoop = Factory::create();
+
         $this->client = new Client([
             'host' => $this->getRedisHost(),
             'port' => $this->getRedisPort(),
-        ]);
+        ], $eventLoop);
 
         $this->client->connect($this);
+
+        $eventLoop->run();
     }
 
     /**

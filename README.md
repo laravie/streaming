@@ -17,7 +17,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "laravie/streaming": "^2.2"
+        "laravie/streaming": "^3.0"
     }
 }
 ```
@@ -36,8 +36,11 @@ Above installation can also be simplify by using the following command:
 ```php
 <?php
 
+use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
+
+$eventLoop = Factory::create();
 
 $chat = new class implements Listener {
     /**
@@ -85,6 +88,8 @@ $chat = new class implements Listener {
     }
 }
 
-$client = new Client(['host' => '127.0.0.1', 'port' => 6379]);
+$client = new Client(['host' => '127.0.0.1', 'port' => 6379], $eventLoop);
 $client->connect($chat);
+
+$eventLoop->run();
 ```

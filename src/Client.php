@@ -21,12 +21,12 @@ class Client
      * @param array $config
      * @param \React\EventLoop\LoopInterface $eventLoop
      */
-    public function __construct(array $config, ?LoopInterface $eventLoop = null)
+    public function __construct(array $config, LoopInterface $eventLoop)
     {
         $url = \sprintf('tcp://%s:%d', $config['host'], $config['port']);
 
         $options = [
-            'eventloop' => $this->resolveEventLoop($eventLoop),
+            'eventloop' => $eventLoop,
             'phpiredis' => $this->detectRedisExtension($config),
         ];
 
@@ -45,8 +45,6 @@ class Client
         $this->connection->connect(function (PredisClient $predis) use ($listener) {
             $this->onConnected($predis, $listener);
         });
-
-        $this->getEventLoop()->run();
 
         return $this;
     }
@@ -90,22 +88,6 @@ class Client
         $predis->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
         $listener->onSubscribed($predis);
-    }
-
-    /**
-     * Resolve event loop implementation.
-     *
-     * @param  \React\EventLoop\LoopInterface|null $eventLoop
-     *
-     * @return \React\EventLoop\LoopInterface
-     */
-    final protected function resolveEventLoop(?LoopInterface $eventLoop = null): LoopInterface
-    {
-        if (\is_null($eventLoop)) {
-            $eventLoop = EventLoop::create();
-        }
-
-        return $eventLoop;
     }
 
     /**
