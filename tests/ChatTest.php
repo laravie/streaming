@@ -6,15 +6,31 @@ use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
+use React\EventLoop\LoopInterface;
+use React\Stream\WritableResourceStream;
 
 class ChatTest extends TestCase implements Listener
 {
+    /**
+     * The client.
+     *
+     * @var \Laravie\Streaming\Client
+     */
+    protected $client;
+
+    /**
+     * Writable resource stream.
+     *
+     * @var \React\Stream\WritableResourceStream
+     */
+    protected $writableStream;
+
     /**
      * Teardown the test environment.
      */
     protected function tearDown(): void
     {
-        unset($this->client);
+        unset($this->client, $this->writableStream);
     }
 
     /** @test */
@@ -33,12 +49,26 @@ class ChatTest extends TestCase implements Listener
     }
 
     /**
+     * Bind services with EventLoop.
+     *
+     * @param  \React\EventLoop\LoopInterface $eventLoop
+     *
+     * @return void
+     */
+    public function withEventLoop($eventLoop)
+    {
+        $this->writableStream = new WritableResourceStream(STDOUT, $eventLoop);
+    }
+
+    /**
      * Trigger on connected listener.
      *
      * @param  \Predis\Async\Client  $predis
      */
     public function onConnected($predis)
     {
+        $this->assertInstanceOf(WritableResourceStream::class, $this->writableStream);
+
         $predis->getEventLoop()->futureTick(function () {
             $this->redis->publish('topic:general', 'Hello world');
         });
