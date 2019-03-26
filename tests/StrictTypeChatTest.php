@@ -34,6 +34,8 @@ class StrictTypeChatTest extends TestCase implements Listener
 
         $this->client->connect($this);
 
+        $this->assertSame($eventLoop, $this->client->getEventLoop());
+
         $eventLoop->run();
     }
 
