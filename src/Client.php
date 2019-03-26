@@ -79,11 +79,11 @@ class Client
      */
     protected function onConnected(PredisClient $predis, Listener $listener): void
     {
-        $listener->onConnected($predis);
-
         if (\method_exists($listener, 'withEventLoop')) {
             $listener->withEventLoop($predis->getEventLoop());
         }
+
+        $listener->onConnected($predis);
 
         $predis->pubSubLoop(['psubscribe' => $listener->subscribedChannels()], [$listener, 'onEmitted']);
 
