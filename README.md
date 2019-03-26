@@ -36,13 +36,9 @@ Above installation can also be simplify by using the following command:
 ```php
 <?php
 
-use React\EventLoop\Factory;
-use Laravie\Streaming\Client;
-use Laravie\Streaming\Listener;
+$eventLoop = React\EventLoop\Factory::create();
 
-$eventLoop = Factory::create();
-
-$chat = new class implements Listener {
+$chat = new class implements Laravie\Streaming\Listener {
     /**
      * @return array
      */
@@ -88,7 +84,10 @@ $chat = new class implements Listener {
     }
 }
 
-$client = new Client(['host' => '127.0.0.1', 'port' => 6379], $eventLoop);
+$client = new Laravie\Streaming\Client(
+    ['host' => '127.0.0.1', 'port' => 6379], $eventLoop
+);
+
 $client->connect($chat);
 
 $eventLoop->run();
