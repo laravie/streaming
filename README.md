@@ -28,7 +28,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "laravie/streaming=^2.2"
+    composer require "laravie/streaming=^3.0"
 
 
 ### Example
