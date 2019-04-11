@@ -42,9 +42,13 @@ class Client
      */
     public function connect(Listener $listener)
     {
-        $this->connection->connect(function (PredisClient $predis) use ($listener) {
-            $this->onConnected($predis, $listener);
-        });
+        if (! $this->connection->isConnected()) {
+            $this->connection->connect(function (PredisClient $predis) use ($listener) {
+                $this->onConnected($predis, $listener);
+            });
+        } else {
+            $this->onConnected($this->connection, $listener);
+        }
 
         return $this;
     }
