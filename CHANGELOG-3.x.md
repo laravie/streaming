@@ -2,7 +2,17 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 3.0.1
+
+Released: 2019-04-15
+
+### Changes
+
+* Allow to a listener on client with existing redis connection.
+
 ## 3.0.0
+
+Released: 2019-03-26
 
 ### Changes
 
