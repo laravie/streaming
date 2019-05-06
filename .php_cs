@@ -14,6 +14,7 @@ return PhpCsFixer\Config::create()
                 'ordered_imports' => ['sortAlgorithm' => 'length'],
                 'phpdoc_align' => false,
                 'phpdoc_no_empty_return' => false,
+                'single_trait_insert_per_statement' => false,
                 'yoda_style' => false,
             ])
             ->setFinder($finder);
