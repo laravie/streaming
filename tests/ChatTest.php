@@ -6,8 +6,6 @@ use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
-use React\EventLoop\LoopInterface;
-use React\Stream\WritableResourceStream;
 
 class ChatTest extends TestCase implements Listener
 {
