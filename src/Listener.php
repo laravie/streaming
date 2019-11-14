@@ -34,8 +34,6 @@ interface Listener
 
     /**
      * List of subscribed channels.
-     *
-     * @return array
      */
     public function subscribedChannels(): array;
 }

@@ -17,9 +17,6 @@ class Client
 
     /**
      * Construct a new streaming service.
-     *
-     * @param array $config
-     * @param \React\EventLoop\LoopInterface $eventLoop
      */
     public function __construct(array $config, LoopInterface $eventLoop)
     {
@@ -55,8 +52,6 @@ class Client
 
     /**
      * Disconnect.
-     *
-     * @return void
      */
     public function disconnect(): void
     {
@@ -65,8 +60,6 @@ class Client
 
     /**
      * Get connection eventloop.
-     *
-     * @return \React\EventLoop\LoopInterface
      */
     final public function getEventLoop(): LoopInterface
     {
@@ -76,10 +69,7 @@ class Client
     /**
      * Handle on connected.
      *
-     * @param  \Predis\Async\Client  $predis
      * @param  \Laravie\Streaming\Listener  $listener
-     *
-     * @return void
      */
     protected function onConnected(PredisClient $predis, Listener $listener): void
     {
@@ -96,10 +86,6 @@ class Client
 
     /**
      * Detect phpiredis extension and check configuration to verify whether we should use it.
-     *
-     * @param  array  $config
-     *
-     * @return bool
      */
     final protected function detectRedisExtension(array $config): bool
     {

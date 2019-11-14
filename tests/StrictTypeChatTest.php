@@ -40,10 +40,6 @@ class StrictTypeChatTest extends TestCase implements Listener
 
     /**
      * Bind services with EventLoop.
-     *
-     * @param  \React\EventLoop\LoopInterface $eventLoop
-     *
-     * @return void
      */
     public function withEventLoop(LoopInterface $eventLoop): void
     {
@@ -71,8 +67,6 @@ class StrictTypeChatTest extends TestCase implements Listener
      * Trigger on subscribed listener.
      *
      * @param  \Predis\Async\Client  $predis
-     *
-     * @return void
      */
     public function onSubscribed($predis): void
     {

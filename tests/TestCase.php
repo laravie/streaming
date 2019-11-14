@@ -16,8 +16,6 @@ class TestCase extends PHPUnit
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -30,8 +28,6 @@ class TestCase extends PHPUnit
 
     /**
      * Teardown the test environment.
-     *
-     * @return void
      */
     protected function tearDown(): void
     {
