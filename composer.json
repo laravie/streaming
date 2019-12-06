@@ -14,7 +14,7 @@
         "laravie/predis-async": "^0.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.5 || ^8.0"
+        "phpunit/phpunit": "^7.5 || ^8.4"
     },
     "autoload": {
         "psr-4": {
