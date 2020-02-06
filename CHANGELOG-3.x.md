@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `laravie/streaming`.
 
+## 3.1.0
+
+Released: 2020-02-06
+
+### Changes
+
+* Bump minimum PHP to 7.2+.
+* Support `laravie/predis-async` `0.4`+.
+
 ## 3.0.1
 
 Released: 2019-04-15
