@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.2 || ^8.0",
         "laravie/predis-async": "^0.3 || ^0.4"
     },
     "require-dev": {
