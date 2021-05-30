@@ -3,7 +3,7 @@ Redis Async Streaming for PHP
 
 The project allows you as a developer to listen to Redis pubsub using async instead of blocking I/O using PHP. This is done by utilizing `predis/predis-async` under the hood.
 
-[![Build Status](https://travis-ci.org/laravie/streaming.svg?branch=master)](https://travis-ci.org/laravie/streaming)
+[![tests](https://github.com/laravie/streaming/workflows/tests/badge.svg?branch=master)](https://github.com/laravie/streaming/actions?query=workflow%3Atests+branch%3Amaster)
 [![Latest Stable Version](https://poser.pugx.org/laravie/streaming/v/stable)](https://packagist.org/packages/laravie/streaming)
 [![Total Downloads](https://poser.pugx.org/laravie/streaming/downloads)](https://packagist.org/packages/laravie/streaming)
 [![Latest Unstable Version](https://poser.pugx.org/laravie/streaming/v/unstable)](https://packagist.org/packages/laravie/streaming)
