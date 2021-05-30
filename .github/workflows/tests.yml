@@ -10,6 +10,7 @@ jobs:
   tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
+    timeout-minutes: 3
     services:
       redis:
         image: redis
