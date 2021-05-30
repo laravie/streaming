@@ -31,7 +31,7 @@ jobs:
           - "highest"
           - "lowest"
         experimental:
-          - true
+          - false
 
     name: PHP${{ matrix.php }}-${{ matrix.os }} (${{ matrix.dependencies }})
 
