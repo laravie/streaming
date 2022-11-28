@@ -46,10 +46,8 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, redis, fileinfo
           coverage: none
 
-      - name: Set Minimum PHP 8.2 Versions
-        uses: nick-invision/retry@v1
-        run: |
-          composer require phpunit/phpunit:9.5.10 --dev --no-update --no-interaction
+      - name: Change composer requirement for PHP 8.1+
+        run: composer require phpunit/phpunit:9.5.10 --dev --no-update --no-interaction
         if: matrix.php >= 8.1 && matrix.stability == 'prefer-lowest'
 
       - name: Install dependencies
