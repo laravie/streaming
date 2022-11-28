@@ -2,9 +2,9 @@
 
 namespace Laravie\Streaming;
 
-use React\EventLoop\LoopInterface;
 use Predis\Async\Client as PredisClient;
 use React\EventLoop\Factory as EventLoop;
+use React\EventLoop\LoopInterface;
 
 class Client
 {
@@ -20,7 +20,7 @@ class Client
      */
     public function __construct(array $config, LoopInterface $eventLoop)
     {
-        $url = \sprintf('tcp://%s:%d', $config['host'], $config['port']);
+        $url = sprintf('tcp://%s:%d', $config['host'], $config['port']);
 
         $options = [
             'eventloop' => $eventLoop,
@@ -33,8 +33,7 @@ class Client
     /**
      * Connect to streaming service.
      *
-     * @param \Laravie\Streaming\Listener $listener
-     *
+     * @param  \Laravie\Streaming\Listener  $listener
      * @return $this
      */
     public function connect(Listener $listener)
@@ -73,7 +72,7 @@ class Client
      */
     protected function onConnected(PredisClient $predis, Listener $listener): void
     {
-        if (\method_exists($listener, 'withEventLoop')) {
+        if (method_exists($listener, 'withEventLoop')) {
             $listener->withEventLoop($predis->getEventLoop());
         }
 

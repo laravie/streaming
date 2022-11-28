@@ -2,8 +2,8 @@
 
 namespace Laravie\Streaming\Tests;
 
-use Predis\Client;
 use PHPUnit\Framework\TestCase as PHPUnit;
+use Predis\Client;
 
 class TestCase extends PHPUnit
 {

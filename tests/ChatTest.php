@@ -2,14 +2,15 @@
 
 namespace Laravie\Streaming\Tests;
 
-use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
+use React\EventLoop\Factory;
 
 class ChatTest extends TestCase implements Listener
 {
     protected $client;
+
     protected $writableStream;
 
     /**
@@ -40,8 +41,7 @@ class ChatTest extends TestCase implements Listener
     /**
      * Bind services with EventLoop.
      *
-     * @param  \React\EventLoop\LoopInterface $eventLoop
-     *
+     * @param  \React\EventLoop\LoopInterface  $eventLoop
      * @return void
      */
     public function withEventLoop($eventLoop)
@@ -70,7 +70,6 @@ class ChatTest extends TestCase implements Listener
      * Trigger on subscribed listener.
      *
      * @param  \Predis\Async\Client  $predis
-     *
      * @return void
      */
     public function onSubscribed($predis)

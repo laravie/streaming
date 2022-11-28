@@ -2,15 +2,16 @@
 
 namespace Laravie\Streaming\Tests;
 
-use React\EventLoop\Factory;
 use Laravie\Streaming\Client;
 use Laravie\Streaming\Listener;
 use Predis\Async\Client as Predis;
+use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 
 class StrictTypeChatTest extends TestCase implements Listener
 {
     protected $client;
+
     protected $writableStream;
 
     /**
