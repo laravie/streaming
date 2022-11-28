@@ -48,11 +48,8 @@ jobs:
 
       - name: Set Minimum PHP 8.2 Versions
         uses: nick-invision/retry@v1
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: |
-            composer require phpunit/phpunit:9.5.10 --dev --${{ matrix.stability }} --no-update --no-interaction
+        run: |
+          composer require phpunit/phpunit:9.5.10 --dev --${{ matrix.stability }} --no-update --no-interaction
         if: matrix.php >= 8.1 && matrix.stability == 'prefer-lowest'
 
       - name: Install dependencies
