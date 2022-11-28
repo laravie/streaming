@@ -13,10 +13,12 @@ class Client
      *
      * @var \Predis\Async\Client
      */
-    protected $connection;
+    protected PredisClient $connection;
 
     /**
      * Construct a new streaming service.
+     *
+     * @param  array{host: string, port: ?int, phpiredis?: bool}  $config
      */
     public function __construct(array $config, LoopInterface $eventLoop)
     {
@@ -85,6 +87,8 @@ class Client
 
     /**
      * Detect phpiredis extension and check configuration to verify whether we should use it.
+     *
+     * @param  array{phpiredis?: bool}  $config
      */
     final protected function detectRedisExtension(array $config): bool
     {

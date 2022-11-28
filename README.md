@@ -40,7 +40,7 @@ $eventLoop = React\EventLoop\Factory::create();
 
 $chat = new class implements Laravie\Streaming\Listener {
     /**
-     * @return array
+     * @return array<int, string>
      */
     public function subscribedChannels(): array {
         return ['topic:*'];
