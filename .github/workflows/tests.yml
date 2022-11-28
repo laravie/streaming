@@ -48,7 +48,7 @@ jobs:
 
       - name: Change composer requirement for PHP 8.1+
         run: composer require phpunit/phpunit:9.5.10 --dev --no-update --no-interaction
-        if: matrix.php >= 8.1 && matrix.stability == 'prefer-lowest'
+        if: matrix.php == "8.1" && matrix.stability == 'prefer-lowest'
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v2"
